@@ -1,4 +1,4 @@
-package com.example.curso.recursos;
+package com.example.curso.resources;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.curso.entidades.User;
+import com.example.curso.entities.User;
 import com.example.curso.services.UserService;
 
 @RestController

@@ -1,35 +1,39 @@
-package com.example.curso.entidades;
+package com.example.curso.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class User implements Serializable {
+@Table(name = "tb_order")
+public class Order implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
-	private String email;
-	private String fone;
-	private String password;
+	private Instant moment;
 	
-	public User() {
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private User client;
+	
+	public Order() {
 		
 	}
 
-	public User(Long id, String nome, String email, String fone, String password) {
+	public Order(Long id, Instant moment, User client) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.fone = fone;
-		this.password = password;
+		this.moment = moment;
+		this.client = client;
 	}
 
 	public Long getId() {
@@ -40,36 +44,20 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Instant getMoment() {
+		return moment;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setMoment(Instant moment) {
+		this.moment = moment;
 	}
 
-	public String getEmail() {
-		return email;
+	public User getClient() {
+		return client;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getFone() {
-		return fone;
-	}
-
-	public void setFone(String fone) {
-		this.fone = fone;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setClient(User client) {
+		this.client = client;
 	}
 
 	@Override
@@ -88,13 +76,13 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Order other = (Order) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	
+	}	
+
 }

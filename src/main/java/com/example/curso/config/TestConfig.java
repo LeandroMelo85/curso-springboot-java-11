@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.example.curso.entidades.User;
+import com.example.curso.entities.User;
 import com.example.curso.repositories.UserRepository;
 
 @Configuration
